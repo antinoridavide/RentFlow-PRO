@@ -503,7 +503,7 @@ def configure_android_storage(path):
     STATIC_DIR.mkdir(parents=True, exist_ok=True)
     for src in source_static.iterdir():
         if src.is_file():
-            shutil.copy2(src, STATIC_DIR / src.name)
+            (STATIC_DIR / src.name).write_bytes(src.read_bytes())
     app.template_folder = str(SOURCE_DIR / 'templates')
     app.static_folder = str(STATIC_DIR)
 
