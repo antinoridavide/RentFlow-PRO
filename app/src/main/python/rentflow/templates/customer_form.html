@@ -1,0 +1,15 @@
+{% extends 'base.html' %}{% block h1 %}{{ 'Modifica cliente' if customer else 'Nuovo cliente' }}{% endblock %}{% block subtitle %}I campi CaRGOS servono per l'invio telematico alla Polizia di Stato{% endblock %}{% block content %}
+<section class="panel form"><form method="post"><h2>Dati cliente</h2><div class="grid">
+<label>Nome<input name="first_name" required value="{{ customer.first_name if customer else '' }}"></label><label>Cognome<input name="last_name" required value="{{ customer.last_name if customer else '' }}"></label>
+<label>Telefono<input name="phone" value="{{ customer.phone if customer else '' }}"></label><label>Email<input type="email" name="email" value="{{ customer.email if customer else '' }}"></label>
+<label>Data di nascita<input type="date" name="birth_date" value="{{ customer.birth_date if customer and customer.birth_date else '' }}"></label><label>Indirizzo residenza<input name="address" value="{{ customer.address if customer else '' }}"></label>
+</div><h2 style="margin-top:18px">Dati CaRGOS</h2><p class="muted">Inserisci i codici ufficiali delle tabelle CaRGOS. La sezione CaRGOS del gestionale ti segnalerà quelli mancanti.</p><div class="grid3">
+<label>Codice luogo nascita<input name="birth_place_code" maxlength="9" value="{{ customer.birth_place_code if customer else '' }}"></label>
+<label>Codice cittadinanza<input name="citizenship_code" maxlength="9" value="{{ customer.citizenship_code if customer else '' }}"></label>
+<label>Codice luogo residenza<input name="residence_place_code" maxlength="9" value="{{ customer.residence_place_code if customer else '' }}"></label>
+<label>Tipo documento (codice)<input name="document_type_code" maxlength="5" value="{{ customer.document_type_code if customer else '' }}"></label>
+<label>Numero documento<input name="document_id" maxlength="20" value="{{ customer.document_id if customer else '' }}"></label>
+<label>Luogo rilascio documento (codice)<input name="document_issue_place_code" maxlength="9" value="{{ customer.document_issue_place_code if customer else '' }}"></label>
+<label>Numero patente<input name="license_number" maxlength="20" value="{{ customer.license_number if customer else '' }}"></label>
+<label>Luogo rilascio patente (codice)<input name="license_issue_place_code" maxlength="9" value="{{ customer.license_issue_place_code if customer else '' }}"></label>
+</div><label>Note<textarea name="notes">{{ customer.notes if customer else '' }}</textarea></label><button class="btn">Salva cliente</button></form></section>{% endblock %}
